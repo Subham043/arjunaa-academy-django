@@ -1,6 +1,5 @@
 from django.db import models
 from datetime import date #date module
-from django.utils.translation import gettext_lazy as _ #for post type
 from django.urls import reverse
 from mysite.models import TimestampInfo, PostType
 from django.contrib.auth.models import User #user model
@@ -17,8 +16,8 @@ class UserInfo(models.Model): #abstract class for user details
         abstract = True #declares the current class as abstract
 
 class Blog(TimestampInfo): #extends timestamp info abstract class
-    title = models.CharField(max_length=50)
-    slug = models.SlugField(max_length=100, unique=True, blank=True)
+    title = models.CharField(max_length=350)
+    slug = models.SlugField(max_length=350, unique=True, blank=True)
     detail = RichTextUploadingField()
     blogs_for = models.CharField(max_length=50, choices=PostType.choices, default=PostType.FOR_ADULTS) #using the choices for the charfield
     banner = models.ImageField(upload_to='blogs/%Y/%m/%d/')# file will be saved to MEDIA_ROOT/uploads/2015/01/30

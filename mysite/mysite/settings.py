@@ -43,6 +43,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blogs.apps.BlogsConfig',
     'expert_tips.apps.ExpertTipsConfig',
+    'faqs.apps.FaqsConfig',
+    'achievers.apps.AchieversConfig',
+    'testimonials.apps.TestimonialsConfig',
+    'leadership_teams.apps.LeadershipTeamsConfig',
 ]
 
 MIDDLEWARE = [

@@ -1,6 +1,5 @@
 from django.db import models
 from datetime import date #date module
-from django.utils.translation import gettext_lazy as _ #for post type
 from django.urls import reverse
 from mysite.models import TimestampInfo, PostType
 from django.contrib.auth.models import User #user model
@@ -9,8 +8,8 @@ from ckeditor_uploader.fields import RichTextUploadingField
 
 # Create your models here.
 class ExpertTip(TimestampInfo): #extends timestamp info abstract class
-    title = models.CharField(max_length=50)
-    slug = models.SlugField(max_length=100, unique=True, blank=True)
+    title = models.CharField(max_length=350)
+    slug = models.SlugField(max_length=350, unique=True, blank=True)
     detail = RichTextUploadingField(config_name='without_image')
     article_for = models.CharField(max_length=50, choices=PostType.choices, default=PostType.FOR_ADULTS) #using the choices for the charfield
     publish_on = models.DateField(default=date.today, blank=True) #using the date module here for default
