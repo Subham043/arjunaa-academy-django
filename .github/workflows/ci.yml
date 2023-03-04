@@ -1,0 +1,23 @@
+name: Server Setup CI
+
+on:
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install Docker
+      uses: docker-practice/actions-setup-docker@master
+      timeout-minutes: 12
+    - name: Check Docker Version
+      # run: docker-compose down && docker-compose build && docker-compose up -d
+      run: |
+        set -x
+
+        docker version

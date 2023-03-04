@@ -1,0 +1,39 @@
+name: Server Deployment CI
+
+on:
+  push:
+    branches: [ "main", "master" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install Docker
+      uses: docker-practice/actions-setup-docker@master
+      timeout-minutes: 12
+    - name: Check Docker Version
+      # run: docker-compose down && docker-compose build && docker-compose up -d
+      run: |
+        set -x
+
+        docker version
+    - name: Deploy using ssh
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        port: 22
+        script: |
+          whoami
+          cd /home/mysite
+          sudo docker-compose down
+          sudo git add .
+          sudo git commit -m "server"
+          sudo git stash
+          sudo git pull
+          sudo docker-compose build && docker-compose up -d

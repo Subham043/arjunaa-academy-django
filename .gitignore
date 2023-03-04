@@ -1,0 +1,4 @@
+./mysite/*
+./venv/*
+./mysite/media/*
+./mysite/db.sqlite3
