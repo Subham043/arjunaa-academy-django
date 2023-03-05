@@ -1,6 +1,5 @@
 from django.db import models
 from datetime import date, datetime #date module
-from django.utils import timezone
 from django.urls import reverse
 from mysite.models import TimestampInfo, PostType
 from django.contrib.auth.models import User #user model

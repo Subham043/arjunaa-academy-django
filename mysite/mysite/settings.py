@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'leadership_teams.apps.LeadershipTeamsConfig',
     'events.apps.EventsConfig',
     'courses.apps.CoursesConfig',
+    'enquiries.apps.EnquiriesConfig',
 ]
 
 MIDDLEWARE = [
