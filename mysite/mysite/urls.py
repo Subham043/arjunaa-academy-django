@@ -17,9 +17,19 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls.static import static
 from django.conf import settings
+from blogs import urls as blogs_url
+from expert_tips import urls as expert_tips_url
+from events import urls as events_url
+from testimonials import urls as testimonials_url
+from faqs import urls as faqs_url
 
 urlpatterns = [
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('knowledge-desk/', include(blogs_url)),
+    path('expert-tips/', include(expert_tips_url)),
+    path('events/', include(events_url)),
+    path('testimonials/', include(testimonials_url)),
+    path('faqs/', include(faqs_url)),
     path('jet/', include('jet.urls', 'jet')),  # Django JET URLS
     path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
     path('admin/', admin.site.urls),
