@@ -4,6 +4,8 @@ from django.urls import reverse
 from mysite.models import TimestampInfo
 from django.contrib.auth.models import User #user model
 from ckeditor_uploader.fields import RichTextUploadingField
+from mysite.signals import brief_description_pre_save
+from django.db.models.signals import pre_save
 
 # Create your models here.
 class Category(TimestampInfo): #extends timestamp info abstract class
@@ -23,7 +25,7 @@ class Category(TimestampInfo): #extends timestamp info abstract class
 class Course(TimestampInfo): #extends timestamp info abstract class
     title = models.CharField(max_length=350)
     slug = models.SlugField(max_length=350, unique=True, blank=True)
-    breif_description = models.TextField()
+    brief_description = models.TextField(blank=True, null=True)
     detail = RichTextUploadingField()
     banner = models.ImageField(upload_to='courses/%Y/%m/%d/')# file will be saved to MEDIA_ROOT/uploads/2015/01/30
     actual_price = models.PositiveBigIntegerField()
@@ -40,3 +42,5 @@ class Course(TimestampInfo): #extends timestamp info abstract class
 
     def __str__(self):
         return self.title
+    
+pre_save.connect(brief_description_pre_save, sender=Course)
