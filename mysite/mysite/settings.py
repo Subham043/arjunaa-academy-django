@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'achievers.apps.AchieversConfig',
     'testimonials.apps.TestimonialsConfig',
     'leadership_teams.apps.LeadershipTeamsConfig',
+    'events.apps.EventsConfig',
+    'courses.apps.CoursesConfig',
 ]
 
 MIDDLEWARE = [
