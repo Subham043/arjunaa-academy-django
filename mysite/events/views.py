@@ -9,11 +9,11 @@ class EventList(generics.ListAPIView):
     pagination_class = LimitOffsetPagination
     default_limit = 12
     max_limit = 12
-    queryset = Event.objects.all()
+    queryset = Event.objects.published()
     serializer_class = EventModelSerializer
 
 
 class EventDetail(generics.RetrieveAPIView):
     lookup_field = 'slug'
-    queryset = Event.objects.all()
+    queryset = Event.objects.published()
     serializer_class = EventModelSerializer

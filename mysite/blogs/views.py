@@ -9,11 +9,11 @@ class BlogList(generics.ListAPIView):
     pagination_class = LimitOffsetPagination
     default_limit = 12
     max_limit = 12
-    queryset = Blog.objects.all()
+    queryset = Blog.objects.published()
     serializer_class = BlogModelSerializer
 
 
 class BlogDetail(generics.RetrieveAPIView):
     lookup_field = 'slug'
-    queryset = Blog.objects.all()
+    queryset = Blog.objects.published()
     serializer_class = BlogModelSerializer

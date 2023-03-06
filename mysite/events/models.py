@@ -1,7 +1,7 @@
 from django.db import models
 from datetime import date, datetime #date module
 from django.urls import reverse
-from mysite.models import TimestampInfo, PostType
+from mysite.models import TimestampInfo, PostType, CommonManager
 from django.contrib.auth.models import User #user model
 from ckeditor_uploader.fields import RichTextUploadingField
 
@@ -27,6 +27,8 @@ class Event(TimestampInfo): #extends timestamp info abstract class
     og_title = models.TextField(blank=True, null=True)
     meta_description = models.TextField(blank=True, null=True)
     og_description = models.TextField(blank=True, null=True)
+
+    objects = CommonManager()
 
     def __str__(self):
         return self.event_title

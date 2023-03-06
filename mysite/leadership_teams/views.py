@@ -9,12 +9,12 @@ class ManagementList(generics.ListAPIView):
     pagination_class = LimitOffsetPagination
     default_limit = 12
     max_limit = 12
-    queryset = Management.objects.all()
+    queryset = Management.objects.without_draft()
     serializer_class = ManagementModelSerializer
 
 class FacultyList(generics.ListAPIView):
     pagination_class = LimitOffsetPagination
     default_limit = 12
     max_limit = 12
-    queryset = Faculty.objects.all()
+    queryset = Faculty.objects.without_draft()
     serializer_class = FacultyModelSerializer

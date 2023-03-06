@@ -9,11 +9,11 @@ class CategoryList(generics.ListAPIView):
     pagination_class = LimitOffsetPagination
     default_limit = 12
     max_limit = 12
-    queryset = Category.objects.all()
+    queryset = Category.objects.without_draft()
     serializer_class = CategoryModelSerializer
 
 
 class CourseDetail(generics.RetrieveAPIView):
     lookup_field = 'slug'
-    queryset = Course.objects.all()
+    queryset = Course.objects.published()
     serializer_class = CourseModelSerializer

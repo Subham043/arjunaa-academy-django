@@ -1,7 +1,7 @@
 from django.db import models
 from datetime import date #date module
 from django.urls import reverse
-from mysite.models import TimestampInfo
+from mysite.models import TimestampInfo, CommonManager
 from django.contrib.auth.models import User #user model
 from ckeditor_uploader.fields import RichTextUploadingField
 from mysite.signals import brief_description_pre_save
@@ -18,6 +18,8 @@ class Category(TimestampInfo): #extends timestamp info abstract class
     og_title = models.TextField(blank=True, null=True)
     meta_description = models.TextField(blank=True, null=True)
     og_description = models.TextField(blank=True, null=True)
+
+    objects = CommonManager()
 
     def __str__(self):
         return self.title
@@ -39,6 +41,8 @@ class Course(TimestampInfo): #extends timestamp info abstract class
     og_title = models.TextField(blank=True, null=True)
     meta_description = models.TextField(blank=True, null=True)
     og_description = models.TextField(blank=True, null=True)
+
+    objects = CommonManager()
 
     def __str__(self):
         return self.title

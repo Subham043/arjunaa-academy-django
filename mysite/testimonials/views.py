@@ -9,5 +9,5 @@ class TestimonialList(generics.ListAPIView):
     pagination_class = LimitOffsetPagination
     default_limit = 12
     max_limit = 12
-    queryset = Testimonial.objects.all()
+    queryset = Testimonial.objects.without_draft()
     serializer_class = TestimonialModelSerializer

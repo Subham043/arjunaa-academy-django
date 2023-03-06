@@ -1,7 +1,7 @@
 from django.db import models
 from datetime import date #date module
 from django.urls import reverse
-from mysite.models import TimestampInfo
+from mysite.models import TimestampInfo, CommonManager
 from django.contrib.auth.models import User #user model
 from ckeditor_uploader.fields import RichTextUploadingField
 
@@ -12,6 +12,8 @@ class LeadershipTeam(TimestampInfo):
     qualification = models.CharField(max_length=350, null=True, blank=True)
     designation = models.CharField(max_length=350)
     is_draft = models.BooleanField(default=False)
+
+    objects = CommonManager()
 
     def __str__(self):
         return self.name

@@ -1,7 +1,7 @@
 from django.db import models
 from datetime import date #date module
 from django.urls import reverse
-from mysite.models import TimestampInfo
+from mysite.models import TimestampInfo, CommonManager
 from django.contrib.auth.models import User #user model
 
 # Create your models here.
@@ -16,6 +16,8 @@ class Category(TimestampInfo): #extends timestamp info abstract class
     meta_description = models.TextField(blank=True, null=True)
     og_description = models.TextField(blank=True, null=True)
 
+    objects = CommonManager()
+
     def __str__(self):
         return self.title
     
@@ -27,6 +29,8 @@ class Result(TimestampInfo): #extends timestamp info abstract class
     is_draft = models.BooleanField(default=False)
     uploaded_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="user_result") #using the user model here for author forign key
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name="achievers_category") #using the user model here for author forign key
+
+    objects = CommonManager()
 
     def __str__(self):
         return self.student_name

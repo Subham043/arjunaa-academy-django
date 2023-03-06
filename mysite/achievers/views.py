@@ -9,12 +9,12 @@ class CategoryList(generics.ListAPIView):
     pagination_class = LimitOffsetPagination
     default_limit = 12
     max_limit = 12
-    queryset = Category.objects.all()
+    queryset = Category.objects.without_draft()
     serializer_class = CategoryModelSerializer
 
 class ResultList(generics.ListAPIView):
     pagination_class = LimitOffsetPagination
     default_limit = 12
     max_limit = 12
-    queryset = Result.objects.all()
+    queryset = Result.objects.without_draft()
     serializer_class = ResultModelSerializer

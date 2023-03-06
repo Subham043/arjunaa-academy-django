@@ -9,5 +9,5 @@ class FaqList(generics.ListAPIView):
     pagination_class = LimitOffsetPagination
     default_limit = 12
     max_limit = 12
-    queryset = Faq.objects.all()
+    queryset = Faq.objects.without_draft()
     serializer_class = FaqModelSerializer

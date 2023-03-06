@@ -9,11 +9,11 @@ class ExpertTipList(generics.ListAPIView):
     pagination_class = LimitOffsetPagination
     default_limit = 12
     max_limit = 12
-    queryset = ExpertTip.objects.all()
+    queryset = ExpertTip.objects.published()
     serializer_class = ExpertTipModelSerializer
 
 
 class ExpertTipDetail(generics.RetrieveAPIView):
     lookup_field = 'slug'
-    queryset = ExpertTip.objects.all()
+    queryset = ExpertTip.objects.published()
     serializer_class = ExpertTipModelSerializer
