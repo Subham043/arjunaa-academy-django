@@ -4,9 +4,9 @@ from achievers.models import Category, Result
 class CategoryModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = '__all__'
+        exclude = ['id', 'is_draft', 'uploaded_by']
 
 class ResultModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Result
-        fields = '__all__'
+        exclude = ['id', 'is_draft', 'uploaded_by']

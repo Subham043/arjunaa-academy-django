@@ -4,4 +4,4 @@ from faqs.models import Faq
 class FaqModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Faq
-        fields = '__all__'
+        exclude = ['id', 'is_draft', 'uploaded_by']

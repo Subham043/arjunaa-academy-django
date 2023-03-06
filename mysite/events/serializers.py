@@ -4,4 +4,4 @@ from events.models import Event
 class EventModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = '__all__'
+        exclude = ['id', 'is_draft', 'uploaded_by']

@@ -4,9 +4,9 @@ from courses.models import Category, Course
 class CategoryModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = '__all__'
+        exclude = ['id', 'is_draft', 'uploaded_by']
 
 class CourseModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
-        fields = '__all__'
+        exclude = ['id', 'is_draft', 'uploaded_by']

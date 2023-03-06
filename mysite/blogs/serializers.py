@@ -4,4 +4,4 @@ from blogs.models import Blog
 class BlogModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Blog
-        fields = '__all__'
+        exclude = ['id', 'is_draft']

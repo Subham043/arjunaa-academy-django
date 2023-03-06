@@ -4,4 +4,4 @@ from expert_tips.models import ExpertTip
 class ExpertTipModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = ExpertTip
-        fields = '__all__'
+        exclude = ['id', 'is_draft']

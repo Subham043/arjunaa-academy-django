@@ -4,4 +4,4 @@ from testimonials.models import Testimonial
 class TestimonialModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Testimonial
-        fields = '__all__'
+        exclude = ['id', 'is_draft', 'uploaded_by']
