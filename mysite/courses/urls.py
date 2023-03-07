@@ -6,10 +6,10 @@ from courses.views import CourseDetail, CategoryListForNavBar, CategoryDetail, C
 app_name = 'courses'
 
 urlpatterns = [
-    path('category/', CategoryListForNavBar.as_view()),
-    path('category/<slug:slug>/', CategoryDetail.as_view()),
-    path('category/<slug:slug>/list', CoursesListBasedOnCategorySlug.as_view()),
-    path('<slug:slug>/', CourseDetail.as_view()),
+    path('category/', CategoryListForNavBar.as_view()), #url for courses category list
+    path('category/<slug:slug>/', CategoryDetail.as_view()), #url for courses category detail
+    path('category/<slug:slug>/list', CoursesListBasedOnCategorySlug.as_view()), #url for courses list based on category slug
+    path('<slug:slug>/', CourseDetail.as_view()), #url for course detail based on course slug
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

@@ -5,6 +5,8 @@ from faqs.models import Faq
 
 
 # Create your views here.
+
+#faq list
 class FaqList(generics.ListAPIView):
     pagination_class = LimitOffsetPagination
     default_limit = 12

@@ -1,6 +1,6 @@
 from rest_framework import generics
 from rest_framework.pagination import LimitOffsetPagination
-from events.serializers import EventModelSerializer, RelatedEventModelSerializer
+from events.serializers import EventModelSerializer, EventBasicDetailSerializer
 from events.models import Event
 from django.http import Http404
 from rest_framework.views import APIView
@@ -8,6 +8,8 @@ from rest_framework.response import Response
 
 
 # Create your views here.
+
+#event list
 class EventList(generics.ListAPIView):
     pagination_class = LimitOffsetPagination
     default_limit = 12
@@ -15,6 +17,7 @@ class EventList(generics.ListAPIView):
     queryset = Event.objects.published()
     serializer_class = EventModelSerializer
 
+#event detail based on event slug
 class EventDetail(APIView):
     """
     Retrieve, update or delete a article instance.
@@ -27,10 +30,10 @@ class EventDetail(APIView):
             raise Http404
         
         next_event = Event.objects.next_event(event.id)
-        next_event_serializer = RelatedEventModelSerializer(next_event)
+        next_event_serializer = EventBasicDetailSerializer(next_event)
 
         prev_event = Event.objects.prev_event(event.id)
-        prev_event_serializer = RelatedEventModelSerializer(prev_event)
+        prev_event_serializer = EventBasicDetailSerializer(prev_event)
 
         return Response({
             "expert_event":event_serializer.data,

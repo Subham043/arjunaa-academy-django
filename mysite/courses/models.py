@@ -8,6 +8,8 @@ from mysite.signals import brief_description_pre_save
 from django.db.models.signals import pre_save
 
 # Create your models here.
+
+#courses category model
 class Category(TimestampInfo): #extends timestamp info abstract class
     title = models.CharField(max_length=350)
     slug = models.SlugField(max_length=350, unique=True, blank=True)
@@ -24,6 +26,7 @@ class Category(TimestampInfo): #extends timestamp info abstract class
     def __str__(self):
         return self.title
     
+#course model
 class Course(TimestampInfo): #extends timestamp info abstract class
     title = models.CharField(max_length=350)
     slug = models.SlugField(max_length=350, unique=True, blank=True)
@@ -47,4 +50,5 @@ class Course(TimestampInfo): #extends timestamp info abstract class
     def __str__(self):
         return self.title
     
+#pre save signal for saving brief description
 pre_save.connect(brief_description_pre_save, sender=Course)

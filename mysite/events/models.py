@@ -7,11 +7,19 @@ from ckeditor_uploader.fields import RichTextUploadingField
 
 
 # Create your models here.
+
+#event manager inherited from common manager
 class EventManager(CommonManager):
+
+    #next event manager
     def next_event(self, id: int):
         return self.published().filter(id__gt=id)[:1].first()
+    
+    #prev event manager
     def prev_event(self, id: int):
         return self.published().filter(id__lt=id)[:1].first()
+
+#event model
 class Event(TimestampInfo): #extends timestamp info abstract class
     event_title = models.CharField(max_length=350)
     slug = models.SlugField(max_length=350, unique=True, blank=True)

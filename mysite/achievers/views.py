@@ -5,6 +5,8 @@ from achievers.models import Category, Result
 
 
 # Create your views here.
+
+#list for achievers category
 class CategoryList(generics.ListAPIView):
     pagination_class = LimitOffsetPagination
     default_limit = 12
@@ -12,6 +14,7 @@ class CategoryList(generics.ListAPIView):
     queryset = Category.objects.without_draft()
     serializer_class = CategoryModelSerializer
 
+#list for achievers results
 class ResultList(generics.ListAPIView):
     pagination_class = LimitOffsetPagination
     default_limit = 12

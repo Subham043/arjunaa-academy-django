@@ -6,8 +6,8 @@ from events.views import EventDetail, EventList
 app_name = 'events'
 
 urlpatterns = [
-    path('', EventList.as_view()),
-    path('<slug:slug>/', EventDetail.as_view()),
+    path('', EventList.as_view()), #url for event list
+    path('<slug:slug>/', EventDetail.as_view()), #url for event detail based on event slug
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

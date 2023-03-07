@@ -6,11 +6,13 @@ from django.contrib.auth.models import User #user model
 from django.utils.translation import gettext_lazy as _ #for post type
 
 
+#testimonial type choices
 class TestimonialType(models.TextChoices): #creation choices for select field
     STUDENTS = 'STUDENTS', _('Students')
     PARENTS = 'PARENTS', _('Parents')
     TEACHERS = 'TEACHERS', _('Teachers')
 
+#testimonial model
 class Testimonial(TimestampInfo): #extends timestamp info abstract class
     category = models.CharField(max_length=50, choices=TestimonialType.choices, default=TestimonialType.STUDENTS) #using the choices for the charfield
     name = models.CharField(max_length=350)

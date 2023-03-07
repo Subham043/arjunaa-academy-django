@@ -63,7 +63,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware", #debug toolbar middleware
 ]
 
 ROOT_URLCONF = 'mysite.urls'
@@ -160,6 +160,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+#rest framework
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     # Use Django's standard `django.contrib.auth` permissions,
@@ -169,10 +170,10 @@ REST_FRAMEWORK = {
     ]
 }
 
+#ck-editor
 CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
 CKEDITOR_UPLOAD_PATH = "uploads"
 CKEDITOR_IMAGE_BACKEND = "pillow"
-
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'Custom',
@@ -200,6 +201,7 @@ CKEDITOR_CONFIGS = {
     }
 }
 
+#debug toolbar
 INTERNAL_IPS = [
    # ...
    '127.0.0.1',

@@ -9,13 +9,23 @@ from django.db.models.signals import pre_save
 
 
 # Create your models here.
+
+#expert tip manager inherited from common manager
 class ExpertTipManager(CommonManager):
+
+    #published along with author details manager
     def published_with_author(self):
         return self.published().select_related('author')
+    
+    #next tip manager
     def next_tip(self, id: int):
         return self.published().filter(id__gt=id)[:1].first()
+    
+    #prev tip manager
     def prev_tip(self, id: int):
         return self.published().filter(id__lt=id)[:1].first()
+
+#expert tip model
 class ExpertTip(TimestampInfo): #extends timestamp info abstract class
     title = models.CharField(max_length=350)
     slug = models.SlugField(max_length=350, unique=True, blank=True)
@@ -35,4 +45,5 @@ class ExpertTip(TimestampInfo): #extends timestamp info abstract class
     def __str__(self):
         return self.title
     
+#pre save signal for saving brief description
 pre_save.connect(brief_description_pre_save, sender=ExpertTip)

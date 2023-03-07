@@ -27,17 +27,17 @@ from leadership_teams import urls as leadership_teams_url
 from courses import urls as courses_url
 
 urlpatterns = [
-    path('__debug__/', include('debug_toolbar.urls')),
-    path('ckeditor/', include('ckeditor_uploader.urls')),
-    path('knowledge-desk/', include(blogs_url)),
-    path('expert-tips/', include(expert_tips_url)),
-    path('events/', include(events_url)),
-    path('testimonials/', include(testimonials_url)),
-    path('faqs/', include(faqs_url)),
-    path('achievers/', include(achievers_url)),
-    path('leadership-teams/', include(leadership_teams_url)),
-    path('courses/', include(courses_url)),
+    path('__debug__/', include('debug_toolbar.urls')), #debug toolbar url
+    path('ckeditor/', include('ckeditor_uploader.urls')), #ck-editor url
+    path('knowledge-desk/', include(blogs_url)), #knowledge-desk-app url
+    path('expert-tips/', include(expert_tips_url)), #expert-tips-app url
+    path('events/', include(events_url)), #events-app url
+    path('testimonials/', include(testimonials_url)), #testimonial-app url
+    path('faqs/', include(faqs_url)), #faq-app url
+    path('achievers/', include(achievers_url)), #achievers-app url
+    path('leadership-teams/', include(leadership_teams_url)), #leadership-team-app url
+    path('courses/', include(courses_url)), #courses-app url
     path('jet/', include('jet.urls', 'jet')),  # Django JET URLS
-    path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
-    path('admin/', admin.site.urls),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),  # Django JET dashboard URLS
+    path('admin/', admin.site.urls), #admin url
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #media url

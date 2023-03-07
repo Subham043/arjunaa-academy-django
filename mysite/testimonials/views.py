@@ -5,6 +5,8 @@ from testimonials.models import Testimonial
 
 
 # Create your views here.
+
+#testimonial list
 class TestimonialList(generics.ListAPIView):
     pagination_class = LimitOffsetPagination
     default_limit = 12

@@ -4,6 +4,8 @@ from django.contrib.auth.models import User #user model
 from ckeditor_uploader.fields import RichTextUploadingField
 
 # Create your models here.
+
+#faq model
 class Faq(TimestampInfo): #extends timestamp info abstract class
     question = models.CharField(max_length=350)
     answer = RichTextUploadingField(config_name='without_image')

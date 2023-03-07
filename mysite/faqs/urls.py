@@ -6,7 +6,7 @@ from faqs.views import FaqList
 app_name = 'faqs'
 
 urlpatterns = [
-    path('', FaqList.as_view()),
+    path('', FaqList.as_view()), #url for faq list
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

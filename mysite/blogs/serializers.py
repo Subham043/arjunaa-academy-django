@@ -1,14 +1,16 @@
 from rest_framework import serializers
 from blogs.models import Blog
-from mysite.serializers import UserRelationModelSerializer
+from mysite.serializers import UserBasicDetailSerializer
 
+#Blog full detail serializer
 class BlogModelSerializer(serializers.ModelSerializer):
-    author = UserRelationModelSerializer()
+    author = UserBasicDetailSerializer()
     class Meta:
         model = Blog
         exclude = ['id', 'is_draft']
 
-class RelatedBlogModelSerializer(serializers.ModelSerializer):
+#Blog basic detail serializer
+class BlogBasicDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Blog
         fields = ['title', 'slug', 'publish_on']

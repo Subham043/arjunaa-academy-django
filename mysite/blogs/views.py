@@ -1,6 +1,6 @@
 from rest_framework import generics
 from rest_framework.pagination import LimitOffsetPagination
-from blogs.serializers import BlogModelSerializer, RelatedBlogModelSerializer
+from blogs.serializers import BlogModelSerializer, BlogBasicDetailSerializer
 from blogs.models import Blog
 from django.http import Http404
 from rest_framework.views import APIView
@@ -10,6 +10,8 @@ from django.db.models import F
 
 
 # Create your views here.
+
+#list for blogs
 class BlogList(generics.ListAPIView):
     pagination_class = LimitOffsetPagination
     default_limit = 12
@@ -17,6 +19,7 @@ class BlogList(generics.ListAPIView):
     queryset = Blog.objects.published_with_author()
     serializer_class = BlogModelSerializer
 
+#detail of blog based on blog slug
 class BlogDetail(APIView):
     """
     Retrieve, update or delete a article instance.
@@ -29,10 +32,10 @@ class BlogDetail(APIView):
             raise Http404
         
         next_blog = Blog.objects.next_blog(blog.id)
-        next_blog_serializer = RelatedBlogModelSerializer(next_blog)
+        next_blog_serializer = BlogBasicDetailSerializer(next_blog)
 
         prev_blog = Blog.objects.prev_blog(blog.id)
-        prev_blog_serializer = RelatedBlogModelSerializer(prev_blog)
+        prev_blog_serializer = BlogBasicDetailSerializer(prev_blog)
         
         return Response({
             "blog":blog_serializer.data,

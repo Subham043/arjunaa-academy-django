@@ -5,6 +5,8 @@ from leadership_teams.models import Management, Faculty
 
 
 # Create your views here.
+
+#management list
 class ManagementList(generics.ListAPIView):
     pagination_class = LimitOffsetPagination
     default_limit = 12
@@ -12,6 +14,7 @@ class ManagementList(generics.ListAPIView):
     queryset = Management.objects.without_draft()
     serializer_class = ManagementModelSerializer
 
+#faculty list
 class FacultyList(generics.ListAPIView):
     pagination_class = LimitOffsetPagination
     default_limit = 12

@@ -5,6 +5,8 @@ from mysite.models import TimestampInfo, CommonManager
 from django.contrib.auth.models import User #user model
 
 # Create your models here.
+
+#achievers category model
 class Category(TimestampInfo): #extends timestamp info abstract class
     title = models.CharField(max_length=350)
     slug = models.SlugField(max_length=350, unique=True, blank=True)
@@ -21,6 +23,7 @@ class Category(TimestampInfo): #extends timestamp info abstract class
     def __str__(self):
         return self.title
     
+#achievers result model
 class Result(TimestampInfo): #extends timestamp info abstract class
     student_name = models.CharField(max_length=350)
     student_rank = models.CharField(max_length=350, blank=True, null=True)

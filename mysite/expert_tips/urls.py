@@ -6,8 +6,8 @@ from expert_tips.views import ExpertTipDetail, ExpertTipList
 app_name = 'expert_tips'
 
 urlpatterns = [
-    path('', ExpertTipList.as_view()),
-    path('<slug:slug>/', ExpertTipDetail.as_view()),
+    path('', ExpertTipList.as_view()), #url for expert tips list
+    path('<slug:slug>/', ExpertTipDetail.as_view()), #url for expert tips detail based on expert tip slug
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

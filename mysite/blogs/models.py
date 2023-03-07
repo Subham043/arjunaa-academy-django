@@ -16,14 +16,21 @@ class UserInfo(models.Model): #abstract class for user details
     class Meta:
         abstract = True #declares the current class as abstract
 
+#blog manager inherited from common manager
 class BlogManager(CommonManager):
+    #published along with author details manager
     def published_with_author(self):
         return self.published().select_related('author')
+    
+    #next blog manager
     def next_blog(self, id: int):
         return self.published().filter(id__gt=id)[:1].first()
+    
+    #prev blog manager
     def prev_blog(self, id: int):
         return self.published().filter(id__lt=id)[:1].first()
 
+#blog model
 class Blog(TimestampInfo): #extends timestamp info abstract class
     title = models.CharField(max_length=350)
     slug = models.SlugField(max_length=350, unique=True, blank=True)
@@ -44,5 +51,5 @@ class Blog(TimestampInfo): #extends timestamp info abstract class
     def __str__(self):
         return self.title
     
-
+#pre save signal for saving brief description
 pre_save.connect(brief_description_pre_save, sender=Blog)

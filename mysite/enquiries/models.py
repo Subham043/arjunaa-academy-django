@@ -7,17 +7,21 @@ from django.contrib.auth.models import User #user model
 from django.utils.translation import gettext_lazy as _ #for post type
 
 # Create your models here.
+
+#request type choices
 class RequestType(models.TextChoices): #creation choices for select field
     CALL_BACK = 'CALL_BACK', _('Call Back')
     HOME_VISIT = 'HOME_VISIT', _('Home Visit')
     VISIT_OUR_CENTER = 'VISIT_OUR_CENTER', _('Visit Our Center')
     CONNECT_ONLINE = 'CONNECT_ONLINE', _('Connect Online')
 
+#branch type choices
 class BranchType(models.TextChoices): #creation choices for select field
     VIJAYNAGAR = 'VIJAYNAGAR', _('Vijaynagar')
     HEBBAL = 'HEBBAL', _('Hebbal')
     KANAKAPURA_ROAD = 'KANAKAPURA_ROAD', _('Kanakapura Road')
 
+#enquiry model
 class Enquiry(TimestampInfo): #extends timestamp info abstract class
     name = models.CharField(max_length=350)
     email = models.EmailField()

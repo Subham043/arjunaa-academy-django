@@ -6,7 +6,7 @@ from testimonials.views import TestimonialList
 app_name = 'testimonials'
 
 urlpatterns = [
-    path('', TestimonialList.as_view()),
+    path('', TestimonialList.as_view()), #url for testimmonial list
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
