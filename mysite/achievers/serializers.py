@@ -7,6 +7,7 @@ class CategoryModelSerializer(serializers.ModelSerializer):
         exclude = ['id', 'is_draft', 'uploaded_by']
 
 class ResultModelSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Result
-        exclude = ['id', 'is_draft', 'uploaded_by']
+        exclude = ['id', 'is_draft', 'uploaded_by', 'category']

@@ -1,17 +1,53 @@
 from rest_framework import generics
-from rest_framework.pagination import LimitOffsetPagination
-from courses.serializers import CategoryModelSerializer, CourseModelSerializer
+from courses.serializers import CourseModelSerializer, CategoryWithCourseSerializer, RelatedCourseModelSerializer, CategoryModelSerializer, CourseWithoutCategoryModelSerializer
 from courses.models import Category, Course
+from django.db.models import Prefetch
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from django.http import Http404
+from rest_framework.pagination import LimitOffsetPagination
 
 
 # Create your views here.
-class CategoryList(generics.ListAPIView):
-    pagination_class = LimitOffsetPagination
-    default_limit = 12
-    max_limit = 12
+    
+class CategoryListForNavBar(APIView):
+    """
+    Retrieve, update or delete a article instance.
+    """
+    def get(self, request, format=None):
+        category_with_courses = Category.objects.prefetch_related(Prefetch('courses_category', queryset=Course.objects.published()))
+        category_with_courses_serializer = CategoryWithCourseSerializer(category_with_courses, many=True)
+        
+        courses_without_category = Course.objects.published().filter(category__isnull=True)
+        courses_without_category_serializer = RelatedCourseModelSerializer(courses_without_category, many=True)
+        
+        return Response({
+            "category_with_courses":category_with_courses_serializer.data,
+            "courses_without_category":courses_without_category_serializer.data,
+        })
+
+
+class CategoryDetail(generics.RetrieveAPIView):
+    lookup_field = 'slug'
     queryset = Category.objects.without_draft()
     serializer_class = CategoryModelSerializer
 
+class CoursesListBasedOnCategorySlug(generics.ListAPIView):
+    pagination_class = LimitOffsetPagination
+    default_limit = 12
+    max_limit = 12
+    lookup_url_kwarg = 'slug'
+    queryset = Course.objects.published()
+    serializer_class = CourseWithoutCategoryModelSerializer
+    
+
+    def get_queryset(self, **kwargs):
+        slug = self.kwargs.get('slug')
+        try:
+            category = Category.objects.without_draft().get(slug=slug)
+        except Category.DoesNotExist:
+            raise Http404
+        return super().get_queryset().filter(category=category.id)
 
 class CourseDetail(generics.RetrieveAPIView):
     lookup_field = 'slug'

@@ -9,6 +9,13 @@ from django.db.models.signals import pre_save
 
 
 # Create your models here.
+class ExpertTipManager(CommonManager):
+    def published_with_author(self):
+        return self.published().select_related('author')
+    def next_tip(self, id: int):
+        return self.published().filter(id__gt=id)[:1].first()
+    def prev_tip(self, id: int):
+        return self.published().filter(id__lt=id)[:1].first()
 class ExpertTip(TimestampInfo): #extends timestamp info abstract class
     title = models.CharField(max_length=350)
     slug = models.SlugField(max_length=350, unique=True, blank=True)
@@ -23,7 +30,7 @@ class ExpertTip(TimestampInfo): #extends timestamp info abstract class
     meta_description = models.TextField(blank=True, null=True)
     og_description = models.TextField(blank=True, null=True)
 
-    objects = CommonManager()
+    objects = ExpertTipManager()
 
     def __str__(self):
         return self.title

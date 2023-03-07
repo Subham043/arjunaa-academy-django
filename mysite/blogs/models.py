@@ -16,6 +16,14 @@ class UserInfo(models.Model): #abstract class for user details
     class Meta:
         abstract = True #declares the current class as abstract
 
+class BlogManager(CommonManager):
+    def published_with_author(self):
+        return self.published().select_related('author')
+    def next_blog(self, id: int):
+        return self.published().filter(id__gt=id)[:1].first()
+    def prev_blog(self, id: int):
+        return self.published().filter(id__lt=id)[:1].first()
+
 class Blog(TimestampInfo): #extends timestamp info abstract class
     title = models.CharField(max_length=350)
     slug = models.SlugField(max_length=350, unique=True, blank=True)
@@ -31,7 +39,7 @@ class Blog(TimestampInfo): #extends timestamp info abstract class
     meta_description = models.TextField(blank=True, null=True)
     og_description = models.TextField(blank=True, null=True)
 
-    objects = CommonManager()
+    objects = BlogManager()
 
     def __str__(self):
         return self.title
