@@ -27,6 +27,7 @@ from leadership_teams import urls as leadership_teams_url
 from courses import urls as courses_url
 
 urlpatterns = [
+    path('__debug__/', include('debug_toolbar.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('knowledge-desk/', include(blogs_url)),
     path('expert-tips/', include(expert_tips_url)),
