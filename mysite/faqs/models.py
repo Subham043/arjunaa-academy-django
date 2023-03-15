@@ -10,7 +10,7 @@ class Faq(TimestampInfo): #extends timestamp info abstract class
     question = models.CharField(max_length=350)
     answer = RichTextUploadingField(config_name='without_image')
     is_draft = models.BooleanField(default=False)
-    uploaded_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="faqs") #using the user model here for author forign key
+    uploaded_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="faqs_uploaded") #using the user model here for author forign key
 
     objects = CommonManager()
 

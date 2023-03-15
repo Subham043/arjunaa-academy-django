@@ -34,7 +34,7 @@ class ExpertTip(TimestampInfo): #extends timestamp info abstract class
     article_for = models.CharField(max_length=50, choices=PostType.choices, default=PostType.FOR_ADULTS) #using the choices for the charfield
     publish_on = models.DateField(default=date.today, blank=True) #using the date module here for default
     is_draft = models.BooleanField(default=False)
-    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="expert_tips") #using the user model here for author forign key
+    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="expert_tips_uploaded") #using the user model here for author forign key
     meta_title = models.TextField(blank=True, null=True)
     og_title = models.TextField(blank=True, null=True)
     meta_description = models.TextField(blank=True, null=True)

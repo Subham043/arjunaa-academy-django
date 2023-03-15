@@ -27,10 +27,10 @@ class LeadershipTeam(TimestampInfo):
 class Management(LeadershipTeam): #extends timestamp info abstract class
     detail = RichTextUploadingField(config_name='without_image')
     image = models.ImageField(upload_to='management/%Y/%m/%d/')# file will be saved to MEDIA_ROOT/uploads/2015/01/30
-    uploaded_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="management") #using the user model here for author forign key
+    uploaded_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="managements_uploaded") #using the user model here for author forign key
 
 #faculty model
 class Faculty(LeadershipTeam): #extends timestamp info abstract class
     detail = models.TextField()
     image = models.ImageField(upload_to='faculty/%Y/%m/%d/')# file will be saved to MEDIA_ROOT/uploads/2015/01/30
-    uploaded_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="faculty") #using the user model here for author forign key
+    uploaded_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="faculties_uploaded") #using the user model here for author forign key

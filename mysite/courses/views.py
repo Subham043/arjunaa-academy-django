@@ -16,7 +16,7 @@ class CategoryListForNavBar(APIView):
     Retrieve, update or delete a article instance.
     """
     def get(self, request, format=None):
-        category_with_courses = Category.objects.prefetch_related(Prefetch('courses_category', queryset=Course.objects.published()))
+        category_with_courses = Category.objects.prefetch_related(Prefetch('courses', queryset=Course.objects.published()))
         category_with_courses_serializer = CategoryWithCourseSerializer(category_with_courses, many=True)
         
         courses_without_category = Course.objects.published().filter(category__isnull=True)

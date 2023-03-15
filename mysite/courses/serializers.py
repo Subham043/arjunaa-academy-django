@@ -28,6 +28,6 @@ class CourseBasicDetailSerializer(serializers.ModelSerializer):
 
 #category basic detail along with course basic detail
 class CategoryWithCourseSerializer(CategoryModelSerializer):
-    courses_category = CourseBasicDetailSerializer(many=True)
+    courses = CourseBasicDetailSerializer(many=True)
     class Meta(CategoryModelSerializer.Meta):
         exclude = ['id', 'is_draft', 'uploaded_by', 'created_at', 'updated_at', 'detail', 'meta_title', 'og_title', 'meta_description', 'og_description']

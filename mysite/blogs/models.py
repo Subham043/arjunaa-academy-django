@@ -40,7 +40,7 @@ class Blog(TimestampInfo): #extends timestamp info abstract class
     banner = models.ImageField(upload_to='blogs/%Y/%m/%d/')# file will be saved to MEDIA_ROOT/uploads/2015/01/30
     publish_on = models.DateField(default=date.today, blank=True) #using the date module here for default
     is_draft = models.BooleanField(default=False)
-    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="blogs") #using the user model here for author forign key
+    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="blogs_uploaded") #using the user model here for author forign key
     meta_title = models.TextField(blank=True, null=True)
     og_title = models.TextField(blank=True, null=True)
     meta_description = models.TextField(blank=True, null=True)

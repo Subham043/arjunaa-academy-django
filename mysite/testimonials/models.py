@@ -21,7 +21,7 @@ class Testimonial(TimestampInfo): #extends timestamp info abstract class
     rating = models.CharField(max_length=50, choices=Rating.choices, default=Rating.FIVE_STARS) #using the choices for the charfield
     image = models.ImageField(upload_to='testimonial/%Y/%m/%d/')# file will be saved to MEDIA_ROOT/uploads/2015/01/30
     is_draft = models.BooleanField(default=False)
-    uploaded_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="testimonials") #using the user model here for author forign key
+    uploaded_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="testimonials_uploaded") #using the user model here for author forign key
 
     objects = CommonManager()
 
